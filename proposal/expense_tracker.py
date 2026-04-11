@@ -7,6 +7,8 @@ __author__ = "Gideon Edet"
 
 # expense_tracker.py
 import csv
+import tkinter as tk
+from tkinter import Frame, Label, Button, Entry, StringVar, messagebox
 from datetime import datetime
 from typing import List, Dict, Optional
 
@@ -99,8 +101,78 @@ def format_expense_data(expense: Dict) -> str:
     return f"{expense['date']} | {expense['category']:15} | ₦{expense['amount']:,.2f}"
 
 
+def run_app():
+    root = tk.Tk()
+    root.title("Student Expense Tracker")
+    root.geometry("400x400")
+
+    # Variables
+    amount_var = StringVar()
+    category_var = StringVar()
+
+    # Title
+    Label(root, text="Expense Tracker", font=("Arial", 16)).pack(pady=10)
+
+    # Amount input
+    Label(root, text="Amount (₦):").pack()
+    Entry(root, textvariable=amount_var).pack()
+
+    # Category input
+    Label(root, text="Category:").pack()
+    Entry(root, textvariable=category_var).pack()
+
+    # Output display
+    output_label = Label(root, text="", justify="left")
+    output_label.pack(pady=10)
+
+    # Functions for buttons
+    def handle_add():
+        amount = amount_var.get()
+        category = category_var.get()
+
+        if validate_expense_input(amount, category):
+            expense = add_expense(amount, category)
+            save_expense_to_csv(expense)
+            messagebox.showinfo("Success", "Expense added!")
+            amount_var.set("")
+            category_var.set("")
+        else:
+            messagebox.showerror("Error", "Invalid input")
+
+    def handle_view():
+        expenses = load_expenses_from_csv()
+        if not expenses:
+            output_label.config(text="No expenses yet.")
+        else:
+            text = "\n".join(format_expense_data(e) for e in expenses)
+            output_label.config(text=text)
+
+    def handle_total():
+        expenses = load_expenses_from_csv()
+        total = calculate_total_expenses(expenses)
+        output_label.config(text=f"Total: ₦{total:,.2f}")
+
+    def handle_category():
+        expenses = load_expenses_from_csv()
+        totals = calculate_category_totals(expenses)
+        if totals:
+            text = "\n".join(f"{k}: ₦{v:,.2f}" for k, v in totals.items())
+            output_label.config(text=text)
+        else:
+            output_label.config(text="No data yet.")
+
+    # Buttons
+    Button(root, text="Add Expense", command=handle_add).pack(pady=5)
+    Button(root, text="View Expenses", command=handle_view).pack(pady=5)
+    Button(root, text="Total Spending", command=handle_total).pack(pady=5)
+    Button(root, text="Category Totals", command=handle_category).pack(pady=5)
+
+    root.mainloop()
+
 # Optional: Simple main menu for running the program
 if __name__ == "__main__":
+    run_app()
+    
     print("=== Student Expense Tracker ===")
     while True:
         print("\n1. Add Expense")

@@ -3,38 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GideonDev</title>
-    <meta name="description" content="GideonDev is a software development company specializing in front-end and UI/UX design.">
-    <meta name="keywords" content="GideonDev, software development, front-end, UI/UX design, web development">
+    <title>Contact - GideonDev</title>
+    <meta name="description" content="Get in touch with GideonDev for front-end development and UI/UX projects.">
     <meta name="author" content="GideonDev">
     <link rel="stylesheet" href="styles/contact.css">
 </head>
 <body>
+
     <header>
-        <h1>GideonDev</h1>
-        <nav>
-            <ul>
-                <li><a href="front.html">Home</a></li>
-                <li><a href="Contact.html">Contact Us</a></li>
-                <li><a href="projects.html">Projects</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <div class="hero"></div>
-             <section id="Contact">
+            <h1>GideonDev</h1>
+            <nav>
                 <ul>
-                  <p>If you have any questions or would like to work together, feel free to reach out!</p>
-                  <ul class="contact-info">
-                  <li>Email: <a href="mailto:contact@gideondev.com">contact@gideondev.com</a></li>
-                  <li>Phone: <a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                    <li><a href="front.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
                 </ul>
-                <a href="contact.html" class="cta-button">Contact Me</a>
-           </section>
+            </nav>
+        
+    </header>
+
+    <main>
+        <section class="contact-page">
+            <div class="contact-container">
+                
+                <!-- Left Side: Contact Info -->
+                <div class="contact-info-section">
+                    <h2>Let's Work Together</h2>
+                    <p>I'm always excited to discuss new projects and opportunities. Feel free to reach out!</p>
+                    
+                    <div class="info-item">
+                        <span class="icon">✉️</span>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:contact@gideondev.com">contact@gideondev.com</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="icon">📞</span>
+                        <div>
+                            <strong>Phone</strong>
+                            <a href="tel:+2341234567890">+234 123 456 7890</a>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <span class="icon">📍</span>
+                        <div>
+                            <strong>Location</strong>
+                            <p>Port Harcourt, Rivers State, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side: Contact Form -->
+                <div class="contact-form-section">
+                    <h3>Send Me a Message</h3>
+                    
+                    <form id="contact-form" action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
     </main>
-     <footer>
-        <h2>GideonDev</h2>
-        <p>© 2024  All rights reserved.</p>
+
+    <footer>
+        <div class="footer-container">
+            <h2>GideonDev</h2>
+            <p>&copy; 2024 - 2026 GideonDev. All rights reserved.</p>
+            <p>Built with ❤️ in Port Harcourt, Nigeria</p>
+        </div>
     </footer>
+
 </body>
 </html>
