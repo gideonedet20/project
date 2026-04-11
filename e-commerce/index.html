@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GideonStore</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <meta name="description" content="GideonStore is your one-stop shop for all your e-commerce needs. We offer a wide range of products at competitive prices, with fast and reliable shipping. Shop with confidence at GideonStore!">
+    <meta name="author" content="Gideon">
+</head>
+<body>
+<main>
+    <nav>
+        <h2>GideonStore</h2>
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Products</a>
+            <a href="#" onclick="toggleCart()">Cart</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Shop Smart. Live Better.</h1>
+        <p>modern E-commerce UI for your internet shopping experience</p>
+    </section>
+
+    <section class="products" id="product-list"></section>
+
+    <div id="cart" class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Shopping Cart</h2>
+            <button onclick="toggleCart()">Close</button>
+        </div>
+    
+
+     <div class="cart-footer">
+        <p id="total" class="cart-total">Total: $0.00</p>
+            <button onclick="checkout()" class="checkout-btn" disabled>Proceed toCheckout</button>
+            <button onclick="toggleCart()" class="continue-btn">Continue Shopping</button>
+      </div>
+    </div>
+</main>  
+ <footer>
+        <p>© 2024 GideonStore. All rights reserved.</p>
+</footer>
+      
+</body>
+</html>
