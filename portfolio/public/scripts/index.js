@@ -114,4 +114,10 @@
       navLinks.forEach(a => {
         a.style.color = a.getAttribute('href') === '#' + current ? 'var(--text)' : '';
       });
-    });
+    }); 
+    fetch("http://localhost:5000/api/projects")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+  })
+  .catch(error => console.log(error));
