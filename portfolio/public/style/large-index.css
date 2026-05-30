@@ -25,3 +25,8 @@
       footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
       .projects-header { flex-direction: column; align-items: flex-start; }
     }
+    @media (min-width: 769px) {
+  .mobile-menu {
+    display: none !important;
+  }
+}
