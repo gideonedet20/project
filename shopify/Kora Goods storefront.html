@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kora Goods</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--ink:#17223b;--muted:#5d6783;--line:#dde1ea;--accent:#e8b931;--accent-ink:#17223b;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1526;--surface:#18203a;--ink:#eef0f6;--muted:#9aa3bd;--line:#2a3558;--accent:#e8b931;--accent-ink:#17223b}}
+:root[data-theme="dark"]{--bg:#0f1526;--surface:#18203a;--ink:#eef0f6;--muted:#9aa3bd;--line:#2a3558;--accent:#e8b931;--accent-ink:#17223b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,Segoe UI,sans-serif;line-height:1.5}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{max-width:1080px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:800;font-size:1.4rem;letter-spacing:-.02em}
+nav a{color:var(--muted);text-decoration:none;margin-right:18px}
+nav a:hover{color:var(--ink)}
+.cartbtn{background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:8px 16px;font-weight:600}
+.cartbtn span{display:inline-block;min-width:1.4em;margin-left:6px;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:0 6px;text-align:center}
+.hero{max-width:1080px;margin:0 auto;padding:64px 20px 40px}
+.hero h1{font-size:clamp(2.4rem,7vw,5rem);line-height:1;letter-spacing:-.03em;font-weight:800;margin:0 0 18px;max-width:14ch}
+.hero p{color:var(--muted);max-width:46ch;font-size:1.1rem;margin:0 0 26px}
+.cta{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:12px 22px;border-radius:10px;font-weight:700;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+h2{font-size:1.6rem;letter-spacing:-.02em;margin:32px 0 18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.img{aspect-ratio:1/1;position:relative;display:grid;place-items:center}
+.img i{display:block;width:46%;height:46%;background:rgba(255,255,255,.55)}
+.img i.s0{border-radius:50%}.img i.s1{border-radius:50% 50% 0 0}.img i.s2{border-radius:14px;transform:rotate(12deg)}.img i.s3{border-radius:0 50% 50% 50%}
+.info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.info h3{margin:0;font-size:1.05rem}
+.info small{color:var(--muted)}
+.row{margin-top:auto;padding-top:12px;display:flex;align-items:center;justify-content:space-between}
+.price{font-weight:700}
+.add{background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:8px 14px;font-weight:600}
+.add:active{transform:scale(.96)}
+footer{border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:28px 20px;font-size:.9rem}
+.scrim{position:fixed;inset:0;background:rgba(10,14,28,.5);opacity:0;pointer-events:none;transition:opacity .25s;z-index:10}
+.scrim.on{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;bottom:0;width:min(400px,100%);background:var(--surface);border-left:1px solid var(--line);z-index:11;transform:translateX(100%);transition:transform .28s ease;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+aside.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.dh h2{margin:0;font-size:1.2rem}
+.x{background:none;border:0;color:var(--ink);font-size:1.6rem;line-height:1}
+.items{flex:1;overflow:auto;padding:8px 20px}
+.empty{color:var(--muted);padding:32px 0;text-align:center}
+.li{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.th{width:56px;height:56px;border-radius:10px}
+.li b{display:block}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:8px;margin-top:4px}
+.qty button{background:none;border:0;color:var(--ink);width:28px;height:28px}
+.qty span{min-width:22px;text-align:center}
+.rm{background:none;border:0;color:var(--muted);text-decoration:underline;font-size:.85rem}
+.foot{padding:16px 20px;border-top:1px solid var(--line)}
+.tot{display:flex;justify-content:space-between;font-weight:700;font-size:1.1rem;margin-bottom:12px}
+.checkout{width:100%;background:var(--accent);color:var(--accent-ink);border:0;border-radius:10px;padding:13px;font-weight:700}
+.checkout:disabled{opacity:.45;cursor:not-allowed}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;opacity:0;transition:.25s;z-index:20;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <div class="logo">Kora Goods</div>
+  <nav aria-label="Main"><a href="#shop">Shop</a><a href="#about">About</a></nav>
+  <button class="cartbtn" id="open" aria-label="Open cart">Cart<span id="count">0</span></button>
+</div></header>
+
+<section class="hero">
+  <h1>Everyday things, made to last.</h1>
+  <p>Small-batch homeware for the kitchen, desk and shelf. Free delivery on orders over $75.</p>
+  <a class="cta" href="#shop">Shop all products</a>
+</section>
+
+<main class="wrap" id="shop">
+  <h2>Featured products</h2>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer id="about">Kora Goods. Simple things, well made.</footer>
+
+<div class="scrim" id="scrim"></div>
+<aside id="drawer" aria-label="Shopping cart" aria-hidden="true">
+  <div class="dh"><h2>Your cart</h2><button class="x" id="close" aria-label="Close cart">&times;</button></div>
+  <div class="items" id="items"></div>
+  <div class="foot">
+    <div class="tot"><span>Subtotal</span><span id="sub">$0.00</span></div>
+    <button class="checkout" id="checkout">Check out</button>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+var CUR="$";
+var PRODUCTS=[
+ {id:1,name:"Stoneware mug",note:"350 ml, matte glaze",price:18,c:"#c86b4a"},
+ {id:2,name:"Linen tea towel",note:"Set of two",price:14,c:"#5b7c6f"},
+ {id:3,name:"Oak serving board",note:"Hand-oiled, 40 cm",price:42,c:"#b08957"},
+ {id:4,name:"Brass desk lamp",note:"Warm LED, dimmable",price:89,c:"#2f4b7c"},
+ {id:5,name:"Glass carafe",note:"1 litre, with lid",price:26,c:"#6a8fa8"},
+ {id:6,name:"Soy wax candle",note:"45-hour burn",price:22,c:"#8a5a7a"}
+];
+var cart={};
+try{var s=localStorage.getItem("kora-cart");if(s)cart=JSON.parse(s)||{};}catch(e){}
+var $=function(id){return document.getElementById(id)};
+function money(n){return CUR+n.toFixed(2)}
+function save(){try{localStorage.setItem("kora-cart",JSON.stringify(cart))}catch(e){}}
+function find(id){return PRODUCTS.filter(function(p){return p.id==id})[0]}
+function toast(t){var el=$("toast");el.textContent=t;el.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(function(){el.classList.remove("on")},1600)}
+
+$("grid").innerHTML=PRODUCTS.map(function(p,i){
+ return '<article class="card"><div class="img" style="background:'+p.c+'"><i class="s'+(i%4)+'"></i></div>'+
+ '<div class="info"><h3>'+p.name+'</h3><small>'+p.note+'</small><div class="row"><span class="price">'+money(p.price)+'</span>'+
+ '<button class="add" data-id="'+p.id+'">Add to cart</button></div></div></article>';
+}).join("");
+
+function render(){
+ var ids=Object.keys(cart).filter(function(k){return cart[k]>0}),n=0,sub=0;
+ $("items").innerHTML=ids.length?ids.map(function(k){
+  var p=find(k),q=cart[k];n+=q;sub+=p.price*q;
+  return '<div class="li"><div class="th" style="background:'+p.c+'"></div><div><b>'+p.name+'</b>'+
+  '<div class="qty"><button data-dec="'+k+'" aria-label="Decrease quantity">&minus;</button><span>'+q+'</span><button data-inc="'+k+'" aria-label="Increase quantity">+</button></div></div>'+
+  '<div style="text-align:right"><div>'+money(p.price*q)+'</div><button class="rm" data-rm="'+k+'">Remove</button></div></div>';
+ }).join(""):'<div class="empty">Your cart is empty. Add a product to get started.</div>';
+ $("count").textContent=n;$("sub").textContent=money(sub);$("checkout").disabled=!n;save();
+}
+function openCart(o){$("drawer").classList.toggle("on",o);$("scrim").classList.toggle("on",o);$("drawer").setAttribute("aria-hidden",!o)}
+
+document.addEventListener("click",function(e){
+ var t=e.target;
+ if(t.dataset.id){cart[t.dataset.id]=(cart[t.dataset.id]||0)+1;render();toast(find(t.dataset.id).name+" added to cart")}
+ else if(t.dataset.inc){cart[t.dataset.inc]++;render()}
+ else if(t.dataset.dec){cart[t.dataset.dec]=Math.max(0,cart[t.dataset.dec]-1);render()}
+ else if(t.dataset.rm){delete cart[t.dataset.rm];render()}
+});
+$("open").onclick=function(){openCart(true)};
+$("close").onclick=$("scrim").onclick=function(){openCart(false)};
+document.addEventListener("keydown",function(e){if(e.key==="Escape")openCart(false)});
+$("checkout").onclick=function(){toast("Demo store: checkout is not connected")};
+render();
+</script>
+</body>
+</html>
